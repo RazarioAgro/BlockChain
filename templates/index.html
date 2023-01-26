@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+<form action="{{ url_for('block') }}" method="post">
+  <div class="mb-3">
+    <label for="exampleInputLender" class="form-label">Кредитор</label>
+    <input type="text" class="form-control" id="lender" placeholder="Имя" aria-describedby="emailHelp" name="lender" value="{{request.form.get('lender', '')}}" >
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputAmount" class="form-label">Сумма</label>
+    <input type="text" class="form-control" placeholder="Сумма" id="amount" name="amount" value="{{request.form.get('amount', '')}}">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputBorrower" class="form-label">Заемшик</label>
+    <input type="text" class="form-control" placeholder="Имя" id="borrower" name="borrower" value="{{request.form.get('borrower', '')}}">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Сделка</button>
+</form>
+
+{% endblock %}
+
+{% block checking %}
+
+  {% for res in results %}
+    <div class="result">
+      block {{ res['block'] }}: {{ res['result'] }}
+    </div>
+  {% endfor %}
+
+{% endblock %}
